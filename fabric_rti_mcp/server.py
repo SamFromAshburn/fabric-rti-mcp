@@ -26,9 +26,11 @@ def main() -> None:
     # print pid
     logger.error(f"PID: {os.getpid()}")
     # import later to allow for environment variables to be set from command line
-    mcp = FastMCP("fabric-rti-mcp-server")
+    mcp = FastMCP("fabric-rti-mcp-server", port=80, host="0.0.0.0")
+
     register_tools(mcp)
-    mcp.run(transport="stdio")
+    
+    mcp.run(transport="streamable-http")
 
 
 if __name__ == "__main__":
